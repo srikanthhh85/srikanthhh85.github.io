@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Appala Srikanth — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EEF1EC;
+    --surface: #E4E8E1;
+    --ink: #1C2A26;
+    --ink-soft: #4B5A55;
+    --accent: #3B6E5E;
+    --accent-warm: #B9803D;
+    --line: #C7CFC5;
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #12191A;
+      --surface: #182220;
+      --ink: #E7EDE9;
+      --ink-soft: #A9B7B0;
+      --accent: #7FBBA3;
+      --accent-warm: #D9A15C;
+      --line: #2A3634;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12191A;
+    --surface: #182220;
+    --ink: #E7EDE9;
+    --ink-soft: #A9B7B0;
+    --accent: #7FBBA3;
+    --accent-warm: #D9A15C;
+    --line: #2A3634;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.7;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  header.hero { padding: 72px 0 48px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-size: 14px; color: var(--ink-soft); margin: 0 0 18px; }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(38px, 7vw, 58px);
+    line-height: 1.08;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  .tagline { font-size: 19px; color: var(--ink-soft); max-width: 46ch; margin: 0 0 28px; }
+  .links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 15px; }
+  .links a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  .links a:hover, .links a:focus-visible { border-bottom-color: var(--accent); }
+
+  section { padding: 44px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0 0 20px;
+  }
+  p { color: var(--ink-soft); margin: 0 0 12px; max-width: 68ch; }
+
+  .skill-row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--line); flex-wrap: wrap; }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-label { flex: 0 0 160px; font-weight: 600; font-size: 14px; color: var(--ink); }
+  .skill-value { color: var(--ink-soft); font-size: 15px; }
+
+  .project { padding: 26px 0; border-bottom: 1px solid var(--line); }
+  .project:last-child { border-bottom: none; }
+  .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .project-title { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500; }
+  .project-stack { font-size: 13px; color: var(--accent-warm); white-space: nowrap; }
+  .project ul { margin: 10px 0 0; padding-left: 20px; color: var(--ink-soft); }
+  .project li { margin-bottom: 6px; }
+  .project-link { display: inline-block; margin-top: 12px; font-size: 14px; }
+  .project-link a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+  .project-link .pending { color: var(--ink-soft); font-style: italic; border-bottom: none; }
+
+  .cert-list, .exp-list { list-style: none; margin: 0; padding: 0; }
+  .cert-list li, .exp-item { padding: 14px 0; border-bottom: 1px dashed var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .cert-list li:last-child { border-bottom: none; }
+  .cert-name { color: var(--ink); font-weight: 500; }
+  .cert-name a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); }
+  .cert-name a:hover, .cert-name a:focus-visible { color: var(--accent); }
+  .cert-name .no-link { color: var(--ink); }
+  .cert-issuer { color: var(--ink-soft); font-size: 14px; }
+
+  .exp-item { flex-direction: column; border-bottom: none; padding: 0; }
+  .exp-role { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; margin-bottom: 4px; }
+  .exp-meta { color: var(--accent-warm); font-size: 13px; margin-bottom: 10px; }
+
+  footer { padding: 40px 0 64px; }
+  footer p { font-size: 14px; }
+  .contact-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 22px;
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 480px) {
+    .skill-label { flex-basis: 100%; }
+    header.hero { padding: 56px 0 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Hyderabad, India — final-year B.Tech CSE</p>
+    <h1>Appala Srikanth</h1>
+    <p class="tagline">Building at the intersection of AI/ML, Android security, and full-stack development — one shipped project at a time.</p>
+    <div class="links">
+      <a href="mailto:srikanthhappala@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/srikanth-appala/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/srikanthhh85" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I'm a Computer Science student at KG Reddy College of Engineering and Technology, graduating in 2027. My work spans AI/ML, Android development, and full-stack projects — most recently a deepfake detection system and an Android app that flags malicious Wi-Fi networks in real time. I like taking ambiguous problems and turning them into things that actually run.</p>
+    <p>Alongside my own projects, I've led a 45-day frontend development program mentoring interns, and I'm currently deepening my AI/ML and cloud fundamentals.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skill-row">
+      <div class="skill-label">Languages</div>
+      <div class="skill-value">Java, Python, HTML, CSS, SQL</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Tools</div>
+      <div class="skill-value">Git, VS Code, Canva</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Databases</div>
+      <div class="skill-value">MySQL</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">AI/ML &amp; Cloud</div>
+      <div class="skill-value">AI fundamentals, prompt engineering, SAP BTP &amp; Analytics Cloud (intro), deep learning basics</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">De-Clone — deepfake detection system</div>
+        <div class="project-stack">Python · TensorFlow · OpenCV</div>
+      </div>
+      <ul>
+        <li>Built a deep learning model to detect image and video manipulation, training on real vs. altered datasets.</li>
+        <li>Designed a UI for visual output comparison and built a full dataset preprocessing pipeline.</li>
+      </ul>
+      <div class="project-link"><span class="pending">Repo link coming soon</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">WiFiShield — Android Wi-Fi security analyzer</div>
+        <div class="project-stack">Java · Android SDK</div>
+      </div>
+      <ul>
+        <li>Developed an Android app in Java to detect fake or malicious Wi-Fi networks in real time.</li>
+        <li>Analyzed SSID patterns, signal strength, and network anomalies to calculate a composite risk score.</li>
+        <li>Built as part of the B.Tech IOMP project.</li>
+      </ul>
+      <div class="project-link"><span class="pending">Repo link coming soon</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Restaurant pages</div>
+        <div class="project-stack">HTML · CSS — client project</div>
+      </div>
+      <ul>
+        <li>Designed and deployed SEO-optimized, mobile-responsive websites with menus, reviews, and contact forms.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Sowjanya Dental Hospital — clinic website</div>
+        <div class="project-stack">HTML · CSS — client project</div>
+      </div>
+      <ul>
+        <li>Built a full clinic site for a Hyderabad dental practice: services overview, patient testimonials, location/map, and an appointment booking form.</li>
+        <li>Structured content across general dentistry, cosmetic, orthodontics, restorative, and gum care service categories.</li>
+      </ul>
+      <div class="project-link"><a href="http://sowjanya-dental-hospital-website.vercel.app/" target="_blank" rel="noopener">View live site</a></div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul class="cert-list">
+      <li><span class="cert-name"><span class="no-link">SQL (Basic)</span></span><span class="cert-issuer">HackerRank, Sep 2026</span></li>
+      <li><span class="cert-name"><a href="https://www.credly.com/badges/b090b85d-46cf-43b9-8916-1d55185696f0" target="_blank" rel="noopener">Artificial Intelligence Fundamentals</a></span><span class="cert-issuer">IBM SkillsBuild, Nov 2025</span></li>
+      <li><span class="cert-name"><span class="no-link">AI/ML, Deep Learning &amp; SAP BTP (Code Unnati)</span></span><span class="cert-issuer">SAP / Edunet Foundation, 2025–26</span></li>
+      <li><span class="cert-name"><span class="no-link">Building Quantum Intuition with IBM Qiskit</span></span><span class="cert-issuer">IUCEE, Dec 2025</span></li>
+    </ul>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="exp-item">
+      <div class="exp-role">Frontend development program lead</div>
+      <div class="exp-meta">Digital marketing agency — 45-day program</div>
+      <p>Led and contributed to a 45-day frontend development internship program, mentoring and guiding interns while delivering client-facing project work.</p>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <h2>Get in touch</h2>
+    <p>Open to opportunities in software engineering, AI/ML, and full-stack development.</p>
+    <a class="contact-btn" href="mailto:srikanthhappala@gmail.com">Email me</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
